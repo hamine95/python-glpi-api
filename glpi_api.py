@@ -668,7 +668,7 @@ class GLPI:
         return params
 
     @_catch_errors
-    def search(self, itemtype, **kwargs):
+    def search(self, itemtype, range='0-20', **kwargs):
         """`API documentation
         <https://github.com/glpi-project/glpi/blob/master/apirest.md#search-items>`__
 
@@ -706,7 +706,7 @@ class GLPI:
         params.update(self._add_criteria(criteria, itemtype))
         # Add other parameters
         params.update(kwargs)
-
+        params['range'] = range
         response = self.session.get(self._set_method('search', itemtype), params=params)
         return {
             200: lambda r: r.json().get('data', []),

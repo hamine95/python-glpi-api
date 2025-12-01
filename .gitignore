@@ -9,3 +9,4 @@ env*/
 
 # Documentation builds.
 doc/build
+test.py
